@@ -4,6 +4,29 @@ Integrates Ganache and Harmony in a seamless setup
 ## Prerequisites
 * Docker 20.10+
 * node 12+
+* yarn
+
+
+## How this works
+
+TODO
+
+
+## Default Settings accounts
+
+### Localnet configuration
+
+Exposed ports
+| Shard | RPC | WS |
+|-|-|-|
+| 0 localhost:9500 | localhost:9800 |
+| 1 localhost:9501 | localhost:9801 |
+
+
+### Test Accounts
+| Account Bech32 | Address | Initial Funds | Private Key
+|-|-|-|-|
+| one1v92y4v2x4q27vzydf8zq62zu9g0jl6z0lx2c8q | one1v92y4v2x4q27vzydf8zq62zu9g0jl6z0lx2c8q | 100 ONE
 
 ## Setup
 > Please NOTE that you will need to clone with `--recurisve` to get all the required dependencies
@@ -12,6 +35,16 @@ Integrates Ganache and Harmony in a seamless setup
 git clone --recursive https://github.com/GabrielNicolasAvellaneda/harmony-one-ganache-support
 cd harmony-one-ganache-support
 ```
+
+## Directory Layout
+```
+.
+├── dapp-quickstart       # A simple Harmony One DApp already configured for localnet development for use with Ganache.
+├── docker                # Docker container configuration and files for the Ganache Harmony One localnet with a set of already funded accounts for testing.
+├── Dockerfile.ganache
+
+```
+
 
 ## This repository includes
 * A link to a fork of Ganache with prebuilt Harmony blockchain support
@@ -48,7 +81,67 @@ docker run --name harmony-localnet-ganache --rm -it  -p 9500:9500 -p 9800:9800 -
 docker rm -f ganache-harmony-localnet
 ```
 
-## Deploying a sample dAppp with truffle
+## Deploying a sample DApp with truffle
+
+> NOTE: The DApp is already configured to use the account `` for doing the deployment on the localnet. If you want to reuse this for testnet and mainnet you just need to set the corresponding private key in [dapp-quickstart/.env](dapp-quickstart/.env).
+
+### Setup
+```
+cd dapp-quickstart
+yarn install
+```
+
+### Deploy with truffle
+```
+truffle migrate --network localnet --reset
+```
+
+### Interacting with the smart contract with truffle
+
+We are going to start the truffle console so we can interact with the smart-contract `Counter` in a repl environment.
+```
+truffle console --network localnet
+```
+
+We will first need and instance of the smart contract and later call the `incrementCounter` method to change the state, increasing the counter as expected.
+
+```
+truffle(localnet)> Counter.deployed().then(instance => { counter = instance } )
+counter.incrementCounter().
+
+> NOTE that when changing the state of a contract a transaction will be sent.
+
+{
+  tx: '0xb510348c0c8a3de2b72896633b447f388b3be004f9d07328314261a35a2ff3eb',
+  receipt: {
+    blockHash: '0xab5dc55f2f15fb1cc394358d6cd6a8943daa963fad49f77fcb891f47e90316a0',
+    blockNumber: 95,
+    contractAddress: null,
+    cumulativeGasUsed: 42041,
+    from: '0xe99fe572b3fff9412925d51bd803fc77610252cc',
+    gasUsed: 42041,
+    logs: [],
+    logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    status: true,
+    to: '0xd7a480867d7cfb975f881357ffd6feb81f950e2e',
+    transactionHash: '0xb510348c0c8a3de2b72896633b447f388b3be004f9d07328314261a35a2ff3eb',
+    transactionIndex: 0,
+    rawLogs: []
+  },
+  logs: []
+}
+```
+
+We can now verify the new state by calling the `getCount` method.
+
+```truffle(localnet)> counter.getCount()
+BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
+```
+
+### Loading the DApp in Ganache
+
+
+
 
 
 
