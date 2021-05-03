@@ -1,14 +1,16 @@
 # harmony-one-ganache-support
-Integrates Ganache and Harmony in a seamless setup
+Integrates Ganache and Harmony in a seamless setup.
+
+With this setup you will be up and running very quickly with a Harmony One localnet deployment with full Ganache integration, a preconfigured set of account for testing and an example dApp.
 
 ## This repository includes
 * An open repo to fork Ganache with prebuilt Harmony blockchain support, included as a submodule and accesible at https://github.com/GabrielNicolasAvellaneda/ganache/tree/harmony-integration
 * Documents how to use Ganache for Harmony during the dApp development
 * A simple working example of a dApp to use Ganache for Harmony
 * A prebuilt Harmony blockchain image on Ganache with a set of already funded accounts
-* A demo video posted to the public on how to use Ganache with Harmony localnet
+* A [demo video]() posted to the public on how to use Ganache with Harmony localnet
 
-## Directory Layout
+## Directory layout
 ```
 .
 ├── dapp-quickstart    # An already configured Harmony One dApp for the localnet
@@ -43,7 +45,7 @@ cd harmony-one-ganache-support
 ```
 
 ## About the Ganache and Harmony integration
-* Minimal requirements as it is implemented as a docker container
+* Minimal requirements as the localnet is packed as docker container
 * Preloaded list of accounts for quick testing
 * Display of Bech32 Harmony One account format
 * Full Ganache integration including:
@@ -55,9 +57,19 @@ cd harmony-one-ganache-support
 * Full Harmony One blockchian deployment
 * hmy pre-configured with the 10 built-in accounts ready for testing.
 
-This setup is ready to get you up and running with an environment for developing Harmony One dApps locally.
+
+![img-1](docs/ganache-harmony-1.jpg)
+
+![img-2](docs/ganache-harmony-2.jpg)
+
+![img-2](docs/ganache-harmony-3.jpg)
 
 
+## Start the docker container
+> NOTE: Start the docker container and wait until it says "Initialization Complete"
+```
+docker run --name harmony-localnet-ganache --rm -it  -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k -n
+```
 
 ## Starting Gananche
 > NOTE: If you didn't run [./scripts/build.sh](./scripts/build.sh) yet, please do it first.
@@ -66,15 +78,8 @@ This setup is ready to get you up and running with an environment for developing
 ./ganache-harmony/dist/ganache-2.6.0-beta.3-linux-x86_64.AppImage
 ```
 
-```
-docker build --pull -f Dockerfile.ganache -t harmonyone/localnet-ganache ./docker
-
-
-docker run --name harmony-localnet-ganache --rm -it  -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k -n
-```
-
-Stopping the docker container
-> NOTE: The docker container will be managed by Ganache. 
+## Stopping the docker container
+> NOTE: The docker container will be managed by Ganache.
 ```
 docker rm -f ganache-harmony-localnet
 ```
@@ -99,12 +104,11 @@ hmy transfer --from one12rzgrlwrquf97kc8ttx9udcsj4mw0d9an4c7a9 --from-shard 0 \
 
 If you have issues connecting Ganache to Harmony localnet probably it may be related to cached data. In this case try to cleanup your `$HOME/.config/Ganache/`
 
-
 ## Deploying a sample dApp with truffle
 
 The sample app provides a few smart-contract examples to start with created using [truffle](https://www.trufflesuite.com/docs/truffle/overview).
 
-> NOTE: The DApp is already configured to use the account `` for doing the deployment on the localnet. If you want to reuse this for testnet and mainnet you just need to set the corresponding private key in [dapp-quickstart/.env](dapp-quickstart/.env).
+> NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on a testnet and mainnet or use another deployment account, you just need to set the corresponding private key in [dapp-quickstart/.env](dapp-quickstart/.env).
 
 ### Setup
 ```
@@ -165,21 +169,13 @@ BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
 
 
 
-
-
-
-## How to setup a different private key for deploying a contract
-
-
 ## Default settings
 
-### Localnet configuration
-
-Exposed ports
+### Exposed ports by the localnet
 | Shard | RPC | WS |
 |-|-|-|
-| 0 localhost:9500 | localhost:9800 |
-| 1 localhost:9501 | localhost:9801 |
+| 0 | localhost:9500 | localhost:9800 |
+| 1 | localhost:9501 | localhost:9801 |
 
 ### Test Accounts
 | Account | Initial Funds | Private Key
