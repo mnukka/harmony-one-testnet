@@ -75,8 +75,7 @@ docker run --name harmony-localnet-ganache --rm -it  -p 9500:9500 -p 9800:9800 -
 ```
 
 ## Starting Gananche
-> NOTE: If you didn't run [./scripts/build.sh](./scripts/build.sh) yet, please do it first.
-
+Start Ganache and click on `Quickstart` for `Harmony One`
 ```
 ./ganache-harmony/dist/ganache-2.6.0-beta.3-linux-x86_64.AppImage
 ```
@@ -167,8 +166,22 @@ truffle(localnet)> counter.getCount()
 BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
 ```
 
-### Loading the DApp in Ganache
+### Loading the dApp in Ganache
 
+> 1. Click `Save` button to create a new workspace
+![img-4](docs/ganache-harmony-4.jpg)
+
+> 2. Navigate to `Contracts` section and click `Link Truffle Project`
+![img-5](docs/ganache-harmony-5.jpg)
+
+> 3. Click `Add Project` and browse for the truffle config file located at [dapp-quickstart/truffle-config.js](./dapp-quickstart/truffle-config.js)
+![img-6](docs/ganache-harmony-6.jpg)
+
+> 3. Click `Save and Restart`
+![img-7](docs/ganache-harmony-7.jpg)
+
+> 4. Navigate to `Contracts` section and see the deployed contracts and their related transactions.
+![img-8](docs/ganache-harmony-8.jpg)
 
 
 ## Default settings
