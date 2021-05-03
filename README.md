@@ -113,13 +113,12 @@ The sample app provides a few smart-contract examples to start with created usin
 
 > NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on a testnet and mainnet or use another deployment account, you just need to set the corresponding private key in [dapp-quickstart/.env](dapp-quickstart/.env).
 
-### Setup
+### Deploying the smart-contract
+
 ```
 cd dapp-quickstart
 yarn install
 ```
-
-### Deploying the smart-contract
 
 ```
 truffle migrate --network localnet --reset
