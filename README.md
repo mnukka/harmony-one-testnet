@@ -30,7 +30,7 @@ With this setup you will be up and running very quickly with a Harmony One local
 > NOTE: Tested on Manjaro Linux 21.0.2
 
 ## Setup
-> **Please NOTE** that you will need to clone with `--recurisve` **to get all the required dependencies!**
+> **Please NOTE** that you will need to clone with `--recursive` **to get all the required dependencies!**
 
 ```
 git clone --recursive https://github.com/GabrielNicolasAvellaneda/harmony-one-ganache-support
