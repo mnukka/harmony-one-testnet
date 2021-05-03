@@ -74,7 +74,7 @@ cd harmony-one-ganache-support
 docker run --name harmony-localnet-ganache --rm -it  -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k -n
 ```
 
-## Starting Gananche
+## Starting Ganache
 Start Ganache and click on `Quickstart` for `Harmony One`
 ```
 ./ganache-harmony/dist/ganache-2.6.0-beta.3-linux-x86_64.AppImage
@@ -110,7 +110,7 @@ If you have issues connecting Ganache to Harmony localnet probably it may be rel
 
 The sample app provides a few smart-contract examples to start with created using [truffle](https://www.trufflesuite.com/docs/truffle/overview).
 
-> NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on a testnet and mainnet or use another deployment account, you just need to set the corresponding private key in [dapp-quickstart/.env](dapp-quickstart/.env).
+> NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on a testnet and mainnet or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
 
 ### Deploying the smart-contract
 
