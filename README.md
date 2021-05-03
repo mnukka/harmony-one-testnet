@@ -58,10 +58,13 @@ cd harmony-one-ganache-support
 * hmy pre-configured with the 10 built-in accounts ready for testing.
 
 
+> NOTE: Harmony one is now an option for running with Ganache
 ![img-1](docs/ganache-harmony-1.jpg)
 
+> NOTE: Ganache will show the list of preset accounts using the Bech32 format
 ![img-2](docs/ganache-harmony-2.jpg)
 
+> NOTE: You can view blocks and its transactions in details
 ![img-2](docs/ganache-harmony-3.jpg)
 
 
