@@ -91,12 +91,12 @@ cd dapp-quickstart
 yarn install
 ```
 
-### Deploy with truffle
+### Deploying the smart-contract
 ```
 truffle migrate --network localnet --reset
 ```
 
-### Interacting with the smart contract with truffle
+### Interacting with the smart contract
 
 We are going to start the truffle console so we can interact with the smart-contract `Counter` in a repl environment.
 ```
@@ -134,7 +134,8 @@ counter.incrementCounter().
 
 We can now verify the new state by calling the `getCount` method.
 
-```truffle(localnet)> counter.getCount()
+```
+truffle(localnet)> counter.getCount()
 BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
 ```
 
