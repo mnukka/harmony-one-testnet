@@ -8,7 +8,7 @@ With this setup you will be up and running very quickly with a Harmony One local
 * Documents how to use Ganache for Harmony during the dApp development
 * A simple working example of a dApp to use Ganache for Harmony
 * A prebuilt Harmony blockchain image on Ganache with a set of already funded accounts
-* A [demo video]() posted to the public on how to use Ganache with Harmony localnet
+* A [demo video](./docs/demo-ganache-harmony.mkv) posted to the public on how to use Ganache with Harmony localnet
 
 ## Directory layout
 ```
