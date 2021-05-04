@@ -52,7 +52,6 @@ function rpc_tests() {
   echo "Funding initial accounts..."
   sleep 3
   cd "$DIR/../" && python3 bootstrap/initialize.py || error=1
-  #bash $DIR/../scripts/fund_accounts.sh
   
   if ((error == 1)); then
     echo "Failed to initialize localnet"

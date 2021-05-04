@@ -68,22 +68,11 @@ cd harmony-one-ganache-support
 ![img-2](docs/ganache-harmony-3.jpg)
 
 
-## Start the docker container
-> NOTE: Start the docker container and wait until it says "Initialization Complete"
-```
-docker run --name harmony-localnet-ganache --rm -it  -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k -n
-```
-
 ## Starting Ganache
-Start Ganache and click on `Quickstart` for `Harmony One`
+Start Ganache and click on `Quickstart` for `Harmony One` to start the Harmony blockchain localnet.
+> NOTE: As opposed to the Ganache ETH blockchain, the Harmony One localnet blockchain is a real blockchain, it is not simulated. The deployment of the blockchian will take about 2 minutes to complete.
 ```
 ./ganache-harmony/dist/ganache-2.6.0-beta.3-linux-x86_64.AppImage
-```
-
-## Stopping the docker container
-> NOTE: The docker container will be managed by Ganache.
-```
-docker rm -f ganache-harmony-localnet
 ```
 
 ## Using hmy client
@@ -98,7 +87,7 @@ alias hmy='docker exec -it harmony-localnet-ganache hmy'
 hmy balances one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr
 
 # Send some funds between accounts
-hmy transfer --from one12rzgrlwrquf97kc8ttx9udcsj4mw0d9an4c7a9 --from-shard 0 \
+hmy transfer --from one1705zuq02my9xgrwce8a020yve9fgj83m56wxpq --from-shard 0 \
   --to one1tlj2520ulz7as4ynyj7rhftlwd8wjfhpnxh8l6 --to-shard 0 --amount 10
 ```
 
@@ -106,11 +95,15 @@ hmy transfer --from one12rzgrlwrquf97kc8ttx9udcsj4mw0d9an4c7a9 --from-shard 0 \
 
 If you have issues connecting Ganache to Harmony localnet probably it may be related to cached data. In this case try to cleanup your `$HOME/.config/Ganache/`
 
+### Troubleshooting Harmony localnet
+
+Please notice that the localnet runs as a docker container and you can see the logs using `docker logs --follow harmony-localnet-ganache` or enter into the container with `docker exec -it harmony-localnet-ganache bash`
+
 ## Deploying a sample dApp with truffle
 
 The sample app provides a few smart-contract examples to start with created using [truffle](https://www.trufflesuite.com/docs/truffle/overview).
 
-> NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on a testnet and mainnet or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
+> NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on testnet and/or mainnet, or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
 
 ### Deploying the smart-contract
 
@@ -205,3 +198,7 @@ BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
 | one1nuy5t8qmz0ksklal9fa53urz3jc2yzwdp6xaks | 100 ONE | 5b2984da0bb75e22208dc3baf8f5a1eb86099418c6b3516d132c70199ce67c65
 | one1tlj2520ulz7as4ynyj7rhftlwd8wjfhpnxh8l6 | 100 ONE | 86cc025e63f934f80e4377a022df3623abbdb5a5803089fe80ffb86dad76b864
 | one12rzgrlwrquf97kc8ttx9udcsj4mw0d9an4c7a9 | 100 ONE | 5709f12bc34677a96ed3f01898329eedb0d78a499159ad5a541cdce8c77a3de3
+
+## Known Issues
+
+Switching back and forth from ETH to Harmony sometimes creates a race condiction but overwall the Harmony integration works fine. I'm working on a fix for this.

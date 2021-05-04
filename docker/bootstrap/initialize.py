@@ -34,7 +34,7 @@ def send_transactions_and_confirm(txs):
     assert is_valid_json_rpc(response), f"Invalid JSON response: {response}"
     # Confirm all txs within 2x timeout window (since all initial txs could be in 2 blocks).
     start_time = time.time()
-    while time.time() - start_time <= 2 * tx_timeout:
+    while time.time() - start_time <= 2.5 * tx_timeout:
         sent_txs = []
         for tx in initial_funding:
             tx_response = get_transaction(tx["hash"], tx["from-shard"])
