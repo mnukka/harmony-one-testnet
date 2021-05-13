@@ -37,12 +37,10 @@ git clone --recursive https://github.com/GabrielNicolasAvellaneda/harmony-one-ga
 cd harmony-one-ganache-support
 ```
 
-## Build
-> NOTE: Before beign able to run this project you must build the docker container `harmonyone/harmony-localnet-ganache` for the localnet and the customized `Ganache` which adds support for Harmony One.
+## Getting started
 
-```
-./scripts/build.sh
-```
+You can download a self-contained prebuilt Ganache with Harmony One support binary for your platform of choice from this repository's [releases](https://github.com/GabrielNicolasAvellaneda/harmony-one-ganache-support/releases) page.
+
 
 ## About the Ganache and Harmony integration
 * Minimal requirements as the localnet is packed as docker container
@@ -184,20 +182,6 @@ BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
 |-|-|-|
 | 0 | localhost:9500 | localhost:9800 |
 | 1 | localhost:9501 | localhost:9801 |
-
-### Test Accounts
-| Account | Initial Funds | Private Key
-|-|-|-|
-| one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr | 100 ONE | 59f46b7addacb231e75932d384c5c75d5e9a84920609b5d27a57922244efbf90
-| one1ynkr6c3jc724htljta4hm9wvuxpgxyulf3mg2j | 100 ONE | d8ee0370d50f5d32c50704f4a0d01f027ab048d9cdb2f137b7ae852d8590d63f
-| one18xl6vf4qpcf9lxn3e0j5694xcrv93jwl93j74u | 100 ONE | ff356a09310ab648ace558574ca84777f21612f6652867776095a95919a47314
-| one1rsup4xsrh9k6v6pjr2jmutpj8hnrcg22dxvgpt | 100 ONE | ed6e49719b1d7c82f364bf843d3d17bb5fd7af8a773cdc18c710c2642566cefa
-| one1705zuq02my9xgrwce8a020yve9fgj83m56wxpq | 100 ONE | 330032b37bdcd8d8f3d9aae0c8403dcbb24915362493e998f7e0b631f20d3f91
-| one1u9fytdmjn24a8atfpltassunfq9jducedmxam2 | 100 ONE | 4e856590fc9233cfc215e5bffe4efdb9611d8e2db78d38be24e02b469fddb5a5
-| one1f6373nd4ymxgrszhz2mluakghgnhm7g8ltq2w8 | 100 ONE | 4d00a5621249165d7fb76bac56cd01786b64a301fffba0137c5fa997c3069163
-| one1nuy5t8qmz0ksklal9fa53urz3jc2yzwdp6xaks | 100 ONE | 5b2984da0bb75e22208dc3baf8f5a1eb86099418c6b3516d132c70199ce67c65
-| one1tlj2520ulz7as4ynyj7rhftlwd8wjfhpnxh8l6 | 100 ONE | 86cc025e63f934f80e4377a022df3623abbdb5a5803089fe80ffb86dad76b864
-| one12rzgrlwrquf97kc8ttx9udcsj4mw0d9an4c7a9 | 100 ONE | 5709f12bc34677a96ed3f01898329eedb0d78a499159ad5a541cdce8c77a3de3
 
 ## Known Issues
 
