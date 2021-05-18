@@ -41,6 +41,10 @@ cd harmony-one-ganache-support
 
 You can download a self-contained prebuilt Ganache with Harmony One support binary for your platform of choice from this repository's [releases](https://github.com/GabrielNicolasAvellaneda/harmony-one-ganache-support/releases) page.
 
+```
+./ganache-2.6.0-beta.3-linux-x86_64.AppImage
+```
+
 
 ## About the Ganache and Harmony integration
 * Minimal requirements as the localnet is packed as docker container
