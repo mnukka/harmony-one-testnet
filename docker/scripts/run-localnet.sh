@@ -43,6 +43,32 @@ function build_and_start_localnet() {
   popd
 }
 
+function wait_until_block() {
+  local tries=200
+  if [ -n "$2" ]; then
+    tries=$2
+  fi
+  
+  i=0
+  local valid=false
+  until $valid; do
+    result=$(curl --silent --location --request POST "localhost:9500" \
+      --header "Content-Type: application/json" \
+      --data '{"jsonrpc":"2.0","method":"hmy_blockNumber","params":[],"id":1}' | jq '.result')
+    if [[ "$result" < "\"$1\"" ]]; then
+      echo "Waiting for block \"$1\", current block is $result..."
+      if ((i > tries)); then
+        echo "TRIES REACHED. EXITING."
+        exit 1
+      fi
+      sleep 2
+      i=$((i + 1))
+    else
+      valid=true
+    fi
+  done
+}
+
 function rpc_tests() {
   echo -e "\n=== STARTING Harmony One localnet for Ganache ===\n"
   build_and_start_localnet || exit 1 &
@@ -56,6 +82,7 @@ function rpc_tests() {
   if ((error == 1)); then
     echo "Failed to initialize localnet"
   else
+    wait_until_block "0x6"
     echo "Initialization of localnet completed"
   fi
 }

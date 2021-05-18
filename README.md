@@ -1,7 +1,7 @@
 # harmony-one-ganache-support
 Integrates Ganache and Harmony in a seamless setup.
 
-With this setup you will be up and running very quickly with a Harmony One localnet deployment with full Ganache integration, a preconfigured set of account for testing and an example dApp.
+With this setup you will be up and running very quickly with a Harmony One localnet deployment with full Ganache integration, a preconfigured set of accounts for testing and an example dApp.
 
 ## This repository includes
 * An open repo to fork Ganache with prebuilt Harmony blockchain support, included as a submodule and accesible at https://github.com/GabrielNicolasAvellaneda/ganache/tree/harmony-integration
