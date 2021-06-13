@@ -33,13 +33,13 @@ With this setup you will be up and running very quickly with a Harmony One local
 > **Please NOTE** that you will need to clone with `--recursive` **to get all the required dependencies!**
 
 ```
-git clone --recursive https://github.com/GabrielNicolasAvellaneda/harmony-one-ganache-support
+git clone --recursive https://github.com/harmony-one/harmony-one-ganache-support
 cd harmony-one-ganache-support
 ```
 
 ## Getting started
 
-You can download a self-contained prebuilt Ganache with Harmony One support binary for your platform of choice from this repository's [releases](https://github.com/GabrielNicolasAvellaneda/harmony-one-ganache-support/releases) page.
+You can download a self-contained prebuilt Ganache with Harmony One support binary for your platform of choice from this repository's [releases](https://github.com/harmony-one/harmony-one-ganache-support/releases) page.
 
 ```
 ./ganache-2.6.0-beta.3-linux-x86_64.AppImage
