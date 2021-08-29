@@ -1,4 +1,4 @@
-#An actual working repo for harmony localnet
+# An actual working repo for harmony localnet
 Since none of the fucking harmony localnet repos work out of the box without headaches, here is how I made mine work.
 
 ### Step fucking one - build docker image
@@ -48,79 +48,17 @@ truffle migrate --network localnet --reset
 let specificInstance = await Counter.at("0x1234...");
 ```
 
-https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts
+[Truffle interacting-with-your-contracts](https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts)
 
 ### Troubleshooting Harmony localnet
 
-Please notice that the localnet runs as a docker container and you can see the logs using `docker logs --follow harmony-localnet-ganache` or enter into the container with `docker exec -it harmony-localnet-ganache bash`
+Localnet runs as a docker container and you can see the logs using `docker logs --follow harmony-localnet-ganache` or enter into the container with `docker exec -it harmony-localnet-ganache bash`
 
 ## Deploying a sample dApp with truffle
 
 The sample app provides a few smart-contract examples to start with created using [truffle](https://www.trufflesuite.com/docs/truffle/overview).
 
-> NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on testnet and/or mainnet, or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
-
-
-### Interacting with the smart contract
-
-We are going to start the truffle console so we can interact with the smart-contract `Counter` in a repl environment.
-```
-truffle console --network localnet
-```
-
-We will first need and instance of the smart contract and later call the `incrementCounter` method to change the state, increasing the counter as expected.
-
-```
-truffle(localnet)> Counter.deployed().then(instance => { counter = instance } )
-counter.incrementCounter().
-
-> NOTE that when changing the state of a contract a transaction will be sent.
-
-{
-  tx: '0xb510348c0c8a3de2b72896633b447f388b3be004f9d07328314261a35a2ff3eb',
-  receipt: {
-    blockHash: '0xab5dc55f2f15fb1cc394358d6cd6a8943daa963fad49f77fcb891f47e90316a0',
-    blockNumber: 95,
-    contractAddress: null,
-    cumulativeGasUsed: 42041,
-    from: '0xe99fe572b3fff9412925d51bd803fc77610252cc',
-    gasUsed: 42041,
-    logs: [],
-    logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-    status: true,
-    to: '0xd7a480867d7cfb975f881357ffd6feb81f950e2e',
-    transactionHash: '0xb510348c0c8a3de2b72896633b447f388b3be004f9d07328314261a35a2ff3eb',
-    transactionIndex: 0,
-    rawLogs: []
-  },
-  logs: []
-}
-```
-
-We can now verify the new state by calling the `getCount` method.
-
-```
-truffle(localnet)> counter.getCount()
-BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
-```
-
-### Loading the dApp in Ganache
-
-> 1. Click `Save` button to create a new workspace
-![img-4](docs/ganache-harmony-4.jpg)
-
-> 2. Navigate to `Contracts` section and click `Link Truffle Project`
-![img-5](docs/ganache-harmony-5.jpg)
-
-> 3. Click `Add Project` and browse for the truffle config file located at [dapp-quickstart/truffle-config.js](./dapp-quickstart/truffle-config.js)
-![img-6](docs/ganache-harmony-6.jpg)
-
-> 3. Click `Save and Restart`
-![img-7](docs/ganache-harmony-7.jpg)
-
-> 4. Navigate to `Contracts` section and see the deployed contracts and their related transactions.
-![img-8](docs/ganache-harmony-8.jpg)
-
+> NOTE: The dApp is already configured to use the account `one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3` for the deployment on the localnet. If you want to deploy on testnet and/or mainnet, or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
 
 ## Default settings
 
@@ -129,7 +67,3 @@ BN { negative: 0, words: [ 1, <1 empty item> ], length: 1, red: null }
 |-|-|-|
 | 0 | localhost:9500 | localhost:9800 |
 | 1 | localhost:9501 | localhost:9801 |
-
-## Known Issues
-
-Switching back and forth from ETH to Harmony sometimes creates a race condiction but overwall the Harmony integration works fine. I'm working on a fix for this.
