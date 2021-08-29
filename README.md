@@ -1,101 +1,54 @@
-# harmony-one-ganache-support
-Integrates Ganache and Harmony in a seamless setup.
+#An actual working repo for harmony localnet
+Since none of the fucking harmony localnet repos work out of the box without headaches, here is how I made mine work.
 
-With this setup you will be up and running very quickly with a Harmony One localnet deployment with full Ganache integration, a preconfigured set of accounts for testing and an example dApp.
+### Step fucking one - build docker image
+\scripts\build-docker.sh
 
-## This repository includes
-* An open repo to fork Ganache with prebuilt Harmony blockchain support, included as a submodule and accesible at https://github.com/harmony-one/ganache/tree/harmony-integration
-* Documents how to use Ganache for Harmony during the dApp development
-* A simple working example of a dApp to use Ganache for Harmony
-* A prebuilt Harmony blockchain image on Ganache with a set of already funded accounts
-* A [demo video](./docs/demo-ganache-harmony.mp4) posted to the public on how to use Ganache with Harmony localnet
-
-## Directory layout
+### Step 2 - run the image
+In other repoos it is missing option "-k" (keeps the chain running after tests are done) and in general pointing to wrong files.
+``` 
+  docker run --name harmony-localnet-ganache --rm -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
 ```
-.
-├── dapp-quickstart    # An already configured Harmony One dApp for the localnet
-├── docker             # Docker container related files for the Ganache Harmony One localnet
-├── Dockerfile.ganache
-├── ganache-harmony    # A forked Ganche which adds full Harmony One support
-├── LICENSE
-├── README.md
-└── scripts           # Build scripts
+### Step 3 - import test wallet private key (only necessary if you want to do step #4)
+``` 
+exec -it harmony-localnet-ganache hmy keys import-private-key 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
+``` 
+### step 4 - Transfer funds to your personal address
+``` 
+docker exec -it harmony-localnet-ganache hmy transfer --from one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3 --from-shard 0 --to ONEYOURADDRESS --to-shard 0 --amount 10
+``` 
 
+### step 5 - Deploying the smart-contract
+**create new .env file with contents:**
 ```
-
-## Prerequisites
-* Docker 20.10+
-* node 12+
-* yarn
-> NOTE: Tested on Manjaro Linux 21.0.2
-
-## Setup
-> **Please NOTE** that you will need to clone with `--recursive` **to get all the required dependencies!**
+LOCALNET_PRIVATE_KEY='1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc'
+TESTNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
+MAINNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
+```
+This way you will be deploying contracts with the _one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3_ test wallet address
 
 ```
-git clone --recursive https://github.com/harmony-one/harmony-one-ganache-support
-cd harmony-one-ganache-support
+cd dapp-quickstart
+yarn install
 ```
 
-## Getting started
-
-You can download a self-contained prebuilt Ganache with Harmony One support binary for your platform of choice from this repository's [releases](https://github.com/harmony-one/harmony-one-ganache-support/releases) page.
-
 ```
-./ganache-2.6.0-beta.3-linux-x86_64.AppImage
+truffle migrate --network localnet --reset
 ```
 
+### step 6 - interact with the contract through truffle
+````
+  truffle console --network localnet
+  let instance = await Counter.deployed()
+  instance
+````
 
-## About the Ganache and Harmony integration
-* Minimal requirements as the localnet is packed as docker container
-* Preloaded list of accounts for quick testing
-* Display of Bech32 Harmony One account format
-* Full Ganache integration including:
-    * A set a pre-configured accounts with 100 ONEs
-    * Able to see the blocks that are mined
-    * Able to see block details such as transactions
-    * Accounts real-time balance updates
-    * Allow to display smart-contract related transactions and information
-* Full Harmony One blockchian deployment
-* hmy pre-configured with the 10 built-in accounts ready for testing.
-
-
-> NOTE: Harmony one is now an option for running with Ganache
-![img-1](docs/ganache-harmony-1.jpg)
-
-> NOTE: Ganache will show the list of preset accounts using the Bech32 format
-![img-2](docs/ganache-harmony-2.jpg)
-
-> NOTE: You can view blocks and its transactions in details
-![img-2](docs/ganache-harmony-3.jpg)
-
-
-## Starting Ganache
-Start Ganache and click on `Quickstart` for `Harmony One` to start the Harmony blockchain localnet.
-> NOTE: As opposed to the Ganache ETH blockchain, the Harmony One localnet blockchain is a real blockchain, it is not simulated. The deployment of the blockchian will take about 2 minutes to complete.
+**Interacting with contract at specific address**
 ```
-./ganache-harmony/dist/ganache-2.6.0-beta.3-linux-x86_64.AppImage
+let specificInstance = await Counter.at("0x1234...");
 ```
 
-## Using hmy client
-
-> NOTE: All the test accounts are already configured in the hmy client that comes with the docker container.
-
-```
-# Simplify the command by using an alias (optional) 
-alias hmy='docker exec -it harmony-localnet-ganache hmy'
-
-# Check balance of account
-hmy balances one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr
-
-# Send some funds between accounts
-hmy transfer --from one1705zuq02my9xgrwce8a020yve9fgj83m56wxpq --from-shard 0 \
-  --to one1tlj2520ulz7as4ynyj7rhftlwd8wjfhpnxh8l6 --to-shard 0 --amount 10
-```
-
-### Troubleshooting Ganache
-
-If you have issues connecting Ganache to Harmony localnet probably it may be related to cached data. In this case try to cleanup your `$HOME/.config/Ganache/`
+https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts
 
 ### Troubleshooting Harmony localnet
 
@@ -107,16 +60,6 @@ The sample app provides a few smart-contract examples to start with created usin
 
 > NOTE: The dApp is already configured to use the account `one1ax072u4nllu5z2f965dasqluwassy5kvjc36zr` for the deployment on the localnet. If you want to deploy on testnet and/or mainnet, or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
 
-### Deploying the smart-contract
-
-```
-cd dapp-quickstart
-yarn install
-```
-
-```
-truffle migrate --network localnet --reset
-```
 
 ### Interacting with the smart contract
 

@@ -1,4 +1,0 @@
-[submodule "ganache-harmony"]
-	path = ganache-harmony
-	url = https://github.com/harmony-one/ganache
-	branch = harmony-integration
