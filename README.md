@@ -9,7 +9,7 @@ docker build --pull -t harmonyone/localnet-ganache ./docker
 ````
 
 ### Step 2 - run the image
-In other repoos it is missing option "-k" (keeps the chain running after tests are done) and in general pointing to wrong files.
+In other repoos it is missing option "-k" (keeps the chain running after tests are done) and in general dockerfile is pointing to wrong running file.
 ``` 
     docker run --name harmony-localnet-ganache --m -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
 ```
