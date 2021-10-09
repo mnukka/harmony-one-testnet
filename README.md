@@ -7,11 +7,11 @@ Since none of the fucking harmony localnet repos work out of the box without hea
 ### Step 2 - run the image
 In other repoos it is missing option "-k" (keeps the chain running after tests are done) and in general pointing to wrong files.
 ``` 
-  docker run --name harmony-localnet-ganache --rm -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
+    docker run --name harmony-localnet-ganache --m -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
 ```
 ### Step 3 - import test wallet private key (only necessary if you want to do step #4)
 ``` 
-exec -it harmony-localnet-ganache hmy keys import-private-key 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
+    docker exec -it harmony-localnet-ganache hmy keys import-private-key 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
 ``` 
 ### step 4 - Transfer funds to your personal address
 ``` 
@@ -25,7 +25,10 @@ LOCALNET_PRIVATE_KEY='1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83be
 TESTNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
 MAINNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
 ```
-This way you will be deploying contracts with the _one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3_ test wallet address
+This is the private key for _one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3_ wallet address. With this setting, you will be deploying contracts from this address.
+If you want to deploy contracts with your own wallet address, replace the private key.
+
+## Carbage info from forked Readme - maybe it's useful
 
 ```
 cd dapp-quickstart
