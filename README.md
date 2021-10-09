@@ -2,7 +2,11 @@
 Since none of the fucking harmony localnet repos work out of the box without headaches, here is how I made mine work.
 
 ### Step fucking one - build docker image
-\scripts\build-docker.sh
+````dockerfile
+docker build --pull -t harmonyone/localnet-ganache ./docker
+# or
+/scripts/build-docker.sh
+````
 
 ### Step 2 - run the image
 In other repoos it is missing option "-k" (keeps the chain running after tests are done) and in general pointing to wrong files.
