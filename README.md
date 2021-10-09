@@ -28,6 +28,25 @@ MAINNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
 This is the private key for _one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3_ wallet address. With this setting, you will be deploying contracts from this address.
 If you want to deploy contracts with your own wallet address, replace the private key.
 
+### Other stuff
+**View commands for hmy cli**
+````
+    docker exec -it harmony-localnet-ganache hmy cookbook
+````
+
+**Premade wallets, give currency**
+````
+    /scripts/give-one.sh
+````
+
+**Ganache**
+
+You can check out my fork from Ganache as well. If you start this docker image, ganache will pick it up.
+Works also in windows.
+````access transformers
+    https://github.com/mnukka/ganache
+````
+
 ## Carbage info from forked Readme - maybe it's useful
 
 ```
