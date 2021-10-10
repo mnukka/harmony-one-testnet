@@ -41,6 +41,9 @@ MAINNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
 This is the private key for _one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3_ wallet address. With this setting, you will be deploying contracts from this address.
 If you want to deploy contracts with your own wallet address, replace the private key.
 
+### step 5 - Join my discord
+https://discord.gg/qJNXepr9
+
 ### Other stuff
 **View commands for hmy cli**
 ````
