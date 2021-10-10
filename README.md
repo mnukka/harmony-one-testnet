@@ -50,9 +50,17 @@ https://discord.gg/qJNXepr9
     docker exec -it harmony-localnet-ganache hmy cookbook
 ````
 
+**Deploying example contracts**
+```
+cd dapp-examnple
+yarn install
+```
+
+```
+truffle migrate --network localnet --reset
+```
 
 **Ganache**
-
 You can check out my fork from Ganache as well. If you start this docker image, ganache will pick it up.
 Works also in windows.
 ````
@@ -60,15 +68,6 @@ Works also in windows.
     npm build
     npm run dev
 ````
-
-```
-cd dapp-quickstart
-yarn install
-```
-
-```
-truffle migrate --network localnet --reset
-```
 
 ### step 6 - interact with the contract through truffle
 ````
