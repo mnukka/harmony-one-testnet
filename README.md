@@ -1,4 +1,4 @@
-# GANACHE-UNFUCKED
+# Easy Localnet
 Initially forked from harmony-ganache project, which no longer gets any updates because people do not give a fuck after they have received their funding.
 
 Since localnet repos are not that straight forward to set up then maybe this will make your life easier.
