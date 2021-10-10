@@ -32,7 +32,7 @@ docker exec -it harmony-localnet-ganache hmy transfer --from one155jp2y76nazx8uw
 ``` 
 
 ### step 4 - Deploying the smart-contract
-**create new .env file with contents:**
+**create into dapp-example new file called .env with contents**
 ```
 LOCALNET_PRIVATE_KEY='1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc'
 TESTNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
