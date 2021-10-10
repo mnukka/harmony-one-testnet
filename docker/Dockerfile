@@ -14,6 +14,8 @@ RUN hmy keys import-private-key 4d00a5621249165d7fb76bac56cd01786b64a301fffba013
 RUN hmy keys import-private-key 5b2984da0bb75e22208dc3baf8f5a1eb86099418c6b3516d132c70199ce67c65
 RUN hmy keys import-private-key 86cc025e63f934f80e4377a022df3623abbdb5a5803089fe80ffb86dad76b864
 RUN hmy keys import-private-key 5709f12bc34677a96ed3f01898329eedb0d78a499159ad5a541cdce8c77a3de3
+RUN hmy keys import-private-key 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
+
 
 # TODO: Remove the harmony one cloning when the harmonyone/localnet-test is updated.
 WORKDIR $GOPATH/src/github.com/harmony-one
@@ -27,9 +29,8 @@ RUN cd harmony && go mod tidy && go get github.com/pborman/uuid && go get github
 
 WORKDIR $GOPATH/src/github.com/harmony-one/harmony-test/localnet
 
-COPY bootstrap bootstrap
 COPY scripts scripts
 
-RUN chmod +x $GOPATH/src/github.com/harmony-one/harmony-test/localnet/scripts/run.sh
+RUN chmod +x $GOPATH/src/github.com/harmony-one/harmony-test/localnet/scripts/run-unfuck.sh
 WORKDIR $GOPATH/src/github.com/harmony-one/harmony
-ENTRYPOINT ["/go/src/github.com/harmony-one/harmony-test/localnet/scripts/run.sh"]
+ENTRYPOINT ["/go/src/github.com/harmony-one/harmony-test/localnet/scripts/run-unfuck.sh"]

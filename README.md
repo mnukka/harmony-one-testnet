@@ -1,28 +1,37 @@
-# An actual working repo for harmony localnet
-Since none of the fucking harmony localnet repos work out of the box without headaches, here is how I made mine work.
+# GANACHE-UNFUCKED
+Initially forked from harmony-ganache project, which no longer gets any updates because people do not give a fuck after they have received their funding.
 
-### Step fucking one - build docker image
+Since localnet repos are not that straight forward to set up then maybe this will make your life easier.
+
+## Default settings
+With first step, you have running harmony localnet to which you can deploy your smart contracts. This localnet is based on harmony's localnet-test project, however tests are not executed on it.
+
+### Exposed ports by the localnet
+| Shard | RPC | WS |
+|-|-|-|
+| 0 | localhost:9500 | localhost:9800 |
+| 1 | localhost:9501 | localhost:9801 |
+
+### Running this shit
 ````dockerfile
+#1
 docker build --pull -t harmonyone/localnet-ganache ./docker
-# or
-/scripts/build-docker.sh
+#2 ("k" flag keeps it running)
+docker run --name harmony-localnet-ganache -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
 ````
 
-### Step 2 - run the image
-In other repoos it is missing option "-k" (keeps the chain running after tests are done) and in general dockerfile is pointing to wrong running file.
-``` 
-    docker run --name harmony-localnet-ganache -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
-```
-### Step 3 - import test wallet private key (only necessary if you want to do step #4)
+### Step 2 (optional) - imports your private key
+_it is done now automatically, but good to know how to do it_
 ``` 
     docker exec -it harmony-localnet-ganache hmy keys import-private-key 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
 ``` 
-### step 4 - Transfer funds to your personal address
+### step 3 (optional) - transfers ONE from one account to another
+_it is done now automatically with specific accounts, but good to know how to do it_
 ``` 
 docker exec -it harmony-localnet-ganache hmy transfer --from one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3 --from-shard 0 --to ONEYOURADDRESS --to-shard 0 --amount 10
 ``` 
 
-### step 5 - Deploying the smart-contract
+### step 4 - Deploying the smart-contract
 **create new .env file with contents:**
 ```
 LOCALNET_PRIVATE_KEY='1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc'
@@ -38,20 +47,16 @@ If you want to deploy contracts with your own wallet address, replace the privat
     docker exec -it harmony-localnet-ganache hmy cookbook
 ````
 
-**Premade wallets, give currency**
-````
-    /scripts/give-one.sh
-````
 
 **Ganache**
 
 You can check out my fork from Ganache as well. If you start this docker image, ganache will pick it up.
 Works also in windows.
-````access transformers
-    https://github.com/mnukka/ganache
 ````
-
-## Carbage info from forked Readme - maybe it's useful
+    clone from https://github.com/mnukka/ganache
+    npm build
+    npm run dev
+````
 
 ```
 cd dapp-quickstart
@@ -68,6 +73,8 @@ truffle migrate --network localnet --reset
   let instance = await Counter.deployed()
   instance
 ````
+
+## Carbage info from forked Readme - maybe it's useful
 
 **Interacting with contract at specific address**
 ```
@@ -86,10 +93,4 @@ The sample app provides a few smart-contract examples to start with created usin
 
 > NOTE: The dApp is already configured to use the account `one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3` for the deployment on the localnet. If you want to deploy on testnet and/or mainnet, or use another deployment account, you just need to set the corresponding private key in [dapp-example/.env](dapp-example/.env).
 
-## Default settings
 
-### Exposed ports by the localnet
-| Shard | RPC | WS |
-|-|-|-|
-| 0 | localhost:9500 | localhost:9800 |
-| 1 | localhost:9501 | localhost:9801 |
