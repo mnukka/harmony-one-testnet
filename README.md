@@ -3,14 +3,8 @@ Initially forked from harmony-ganache project, which no longer gets any updates 
 
 Since localnet repos are not that straight forward to set up then maybe this will make your life easier.
 
-## Default settings
+## Lets get started
 With first step, you have running harmony localnet to which you can deploy your smart contracts. This localnet is based on harmony's localnet-test project, however tests are not executed on it.
-
-### Exposed ports by the localnet
-| Shard | RPC | WS |
-|-|-|-|
-| 0 | localhost:9500 | localhost:9800 |
-| 1 | localhost:9501 | localhost:9801 |
 
 ### Running this shit
 ````dockerfile
@@ -19,6 +13,12 @@ docker build --pull -t harmonyone/localnet-ganache ./docker
 #2 ("k" flag keeps it running)
 docker run --name harmony-localnet-ganache -p 9500:9500 -p 9800:9800 -p 9801:9801 -p 9501:9501 harmonyone/localnet-ganache -k
 ````
+
+##### Exposed ports by the localnet
+| Shard | RPC | WS |
+|-|-|-|
+| 0 | localhost:9500 | localhost:9800 |
+| 1 | localhost:9501 | localhost:9801 |
 
 ### Step 2 (optional) - imports your private key
 _it is done now automatically, but good to know how to do it_
