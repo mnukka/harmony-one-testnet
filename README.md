@@ -21,7 +21,7 @@ docker run --name harmony-localnet-ganache -p 9500:9500 -p 9800:9800 -p 9801:980
 | 1 | localhost:9501 | localhost:9801 |
 
 ### Step 2 (optional) - imports your private key
-_it is done now automatically, but good to know how to do it_
+_it is done now automatically, but good to know how to do it. You cannot transfer currency from an account with hmy cli if it does not know its private key_
 ``` 
     docker exec -it harmony-localnet-ganache hmy keys import-private-key 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
 ``` 
