@@ -41,6 +41,18 @@ MAINNET_PRIVATE_KEY='ENTER_PRIVATE_KEY_HERE'
 This is the private key for _one155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3_ wallet address. With this setting, you will be deploying contracts from this address.
 If you want to deploy contracts with your own wallet address, replace the private key.
 
+**Dependencies**
+```
+cd dapp-example
+yarn install
+```
+
+**Deploying example contracts**
+```
+cd dapp-example
+truffle migrate --network localnet --reset
+```
+
 ### step 5 - Join my discord
 https://discord.gg/qJNXepr9
 
@@ -49,16 +61,6 @@ https://discord.gg/qJNXepr9
 ````
     docker exec -it harmony-localnet-ganache hmy cookbook
 ````
-
-**Deploying example contracts**
-```
-cd dapp-examnple
-yarn install
-```
-
-```
-truffle migrate --network localnet --reset
-```
 
 **Ganache**
 You can check out my fork from Ganache as well. If you start this docker image, ganache will pick it up.
